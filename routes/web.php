@@ -12,5 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+
+
+Route::group(['prefix' =>'user'] , function(){
+    Route::get('/data','UserController@getUser');
+    Route::get('/login' , 'UserController@getLogin');
+    Route::post('/login', 'UserController@postLogin');
+});
+
+Route::group(['prefix'=>'treatment'],function(){
+    Route::get('/record','TreatmentController@getrecord');
 });
