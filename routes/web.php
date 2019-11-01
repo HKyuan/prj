@@ -16,13 +16,15 @@ Route::get('/', function () {
 });
 
 
-
 Route::group(['prefix' =>'user'] , function(){
     Route::get('/data','UserController@getUser');
     Route::get('/login' , 'UserController@getLogin');
     Route::post('/login', 'UserController@postLogin');
+    Route::post('/pdf','UserController@postpdf');
+    Route::get('/pdf/generate','UserController@getpdf');
 });
 
 Route::group(['prefix'=>'treatment'],function(){
     Route::get('/record','TreatmentController@getrecord');
+    
 });

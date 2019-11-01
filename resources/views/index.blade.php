@@ -18,5 +18,11 @@
 </div>
 
 @include('components.footer')
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script>
+    @yield('script')
+</script>
+
 </body>
 </html>

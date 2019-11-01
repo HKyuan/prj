@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-        // truncate 清空資料表
+        // truncate => clear Table
         for ($i=0; $i <10 ; $i++) { 
             User::create([
                 'number'=> $i,
