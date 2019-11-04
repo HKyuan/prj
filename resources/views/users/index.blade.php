@@ -50,6 +50,11 @@
         <button type="submit" class="btn btn-success">送出</button>
     </form>
 @endsection
-
+@section('script')
+    <!-- {
+        let container = $(".container")
+        console.log(container)
+    } -->
+@endsection
 
 

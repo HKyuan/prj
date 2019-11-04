@@ -64,6 +64,7 @@ class UserController extends Controller
             <thead>
                 <tr>
                     <th style="text-align:center">id</th>
+                    <th style="text-align:center">id</th>
                     <th style="text-align:center">name</th>
                 </tr>
             </thead>
