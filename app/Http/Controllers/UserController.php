@@ -34,44 +34,49 @@ class UserController extends Controller
         return view('users.index',compact('query') ,['title'=>'會員資料']);
     }
 
-    public function getPDF()
+    public function postPDF()
+    {   
+        $ary = request()->check;
+        $posts = DB::table('treatments')->whereIn('id', $ary)->get();
+        session()->put('posts',$posts);
+        return view('users.pdf',compact('posts'),['title'=>'PDF']);
+    }
+    
+    public function createPDF()
     {   
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML($this->getHTML());
-        // $pdf->loadView('users.pdf');
-        $pdf->stream();
+        $posts = session('posts');
+        // dd($posts);
+        $pdf->loadHTML($this->getData($posts));
+        // $pdf->loadView('users.pdf',compact('posts'));
+        return $pdf->stream();
+        session()->unset();
     }
-    public function getHTML()
+    public function getData($query)
     {
+        // $query = session('posts');
+        // $query = Treatment::all();
         
-        $query = $this->request()->check;
         $output ='
-        <table style="width:100% ; border-collapse:collapse ; border: 1px solid; ">
+        <table style="width:100% ; word-wrap: break-word; border-collapse:collapse">
         <thead>
             <tr>
-                <th align="center">id</td>
-                <th align="center">name</td>
+                <th style="text-align:center">id</th>
+                <th style="text-align:center">name</th>
             </tr>
         </thead>
-        <tbody width="100%">
-        ';
+        <tbody>';
         foreach($query as $var)
         {
-            $output .='
+            $output .= '
             <tr>
                 <td width="25%" align="center">'. $var->id .'</td>
                 <td style="word-wrap: break-word;" align="center">'. $var->name.'</td>
             </tr>
             ';
         }
-        $output.='</table>';
+        $output .='</table>';
         return $output;
     }
-    
-    public function postpdf()
-    {   
-        $ary = request()->check;
-        $posts = DB::table('treatments')->whereIn('id', $ary)->get();
-        return view('users.pdf',compact('posts'));
-    }
+
 }

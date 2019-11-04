@@ -2,26 +2,43 @@
 
 @section('title', $title)
 
+@section('css')
+.thead{
+    word-wrap: break-word;
+    border-collapse:collapse;
+    text-align:center;
+}
+.thead .td:nth-child(3){
+    width:75%
+}
+.tbody{
+    word-break: break-all;
+    text-align:center;
+}
+.tbody .td:nth-child(3){
+    width:75%;
+}
+@endsection
+
 @section('content')
-    
     <form action="{{url('user/pdf')}}" method="post">
     @csrf
-    <table class="table table-hover" style="width:100% ; word-wrap: break-word; border-collapse:collapse">
-        <thead>
+    <table class="table table-hover" style="width:100% ;">
+        <thead class="thead">
             <tr>
                 <th>#</th>
-                <th style="text-align:center">id</th>
+                <th class="thead td">id</th>
                 <!-- <th>number</th> -->
-                <th style="text-align:center">name</th>
+                <th class="thead td">name</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="tbody">
     @foreach( $query as $var)
             <tr>
-                <td><input type="checkbox" value="{{ $var->id }}" name="check[]" id=""></td> 
-                <td style="width:25% ; text-align:center">{{ $var->id }}</td>
+                <td class="tbody td"><input type="checkbox" value="{{ $var->id }}" name="check[]" id=""></td> 
+                <td class="tbody td">{{ $var->id }}</td>
                 <!-- <td>{{ $var->number}}</td> -->
-                <td style="width:75% ; text-align:center ; word-break: break-all;" >{{ $var->name }}</td>
+                <td class="tbody td">{{ $var->name }}</td>
                 <!-- web view force break by using word-break: break-all -->
                 <!-- pdf view force break by using word-wrap: break-word -->
                 <!-- word-break: break-all suitable variables show -->

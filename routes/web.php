@@ -20,8 +20,9 @@ Route::group(['prefix' =>'user'] , function(){
     Route::get('/data','UserController@getUser');
     Route::get('/login' , 'UserController@getLogin');
     Route::post('/login', 'UserController@postLogin');
-    Route::post('/pdf','UserController@postpdf');
-    Route::get('/pdf/generate','UserController@getpdf');
+    Route::post('/pdf','UserController@postPDF');
+    Route::get('/pdf/create','UserController@createPDF');
+    
 });
 
 Route::group(['prefix'=>'treatment'],function(){

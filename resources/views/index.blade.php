@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <title>@yield('title') | FuDeShi</title>
+    <style> @yield('css') </style>
 </head>
 <body>
 <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>

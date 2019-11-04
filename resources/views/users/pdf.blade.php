@@ -1,9 +1,15 @@
-<a href="{{url('/user/pdf/generate')}}" target="blank">Create PDF</a>
+@extends('index')
+
+@section('title' , $title)
+
+@section ('content')
+
+<a href="{{url('/user/pdf/create')}}" role="btn" class="btn btn-primary" target="blank">Create PDF</a>
 <table>
     <thead>
         <tr>
-            <th>id</th>
-            <th>name</th>
+            <th style="text-align:center">id</th>
+            <th style="text-align:center">name</th>
         </tr>
     </thead>
     <tbody>
@@ -15,3 +21,5 @@
     @endforeach
     </tbody>
 </table>
+
+@endsection
