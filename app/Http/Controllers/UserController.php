@@ -49,32 +49,35 @@ class UserController extends Controller
         // dd($posts);
         $pdf->loadHTML($this->getData($posts));
         // $pdf->loadView('users.pdf',compact('posts'));
+        session()->forget('posts');
         return $pdf->stream();
-        session()->unset();
     }
     public function getData($query)
     {
         // $query = session('posts');
         // $query = Treatment::all();
-        
-        $output ='
-        <table style="width:100% ; word-wrap: break-word; border-collapse:collapse">
-        <thead>
-            <tr>
-                <th style="text-align:center">id</th>
-                <th style="text-align:center">name</th>
-            </tr>
-        </thead>
-        <tbody>';
-        foreach($query as $var)
-        {
-            $output .= '
-            <tr>
-                <td width="25%" align="center">'. $var->id .'</td>
-                <td style="word-wrap: break-word;" align="center">'. $var->name.'</td>
-            </tr>
-            ';
-        }
+        if(empty($query))$output = '<H3 style="text-align:center">No Data checked !</H3>';
+
+        else{
+            $output ='
+            <table style="width:100% ; word-wrap: break-word; border-collapse:collapse">
+            <thead>
+                <tr>
+                    <th style="text-align:center">id</th>
+                    <th style="text-align:center">name</th>
+                </tr>
+            </thead>
+            <tbody>';
+            foreach($query as $var)
+            {
+                $output .= '
+                <tr>
+                    <td width="25%" align="center">'. $var->id .'</td>
+                    <td style="word-wrap: break-word;" align="center">'. $var->name.'</td>
+                </tr>
+                ';
+            }
+        } 
         $output .='</table>';
         return $output;
     }

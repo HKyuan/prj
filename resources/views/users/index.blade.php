@@ -51,10 +51,10 @@
     </form>
 @endsection
 @section('script')
-    {
+    <!-- {
         let container = $(".container")
         console.log(container)
-    }
+    } -->
 @endsection
 
 
